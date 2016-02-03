@@ -1,4 +1,5 @@
 import math
+import os
 import pandas as pan
 import numpy as np
 from collections import Counter
@@ -69,7 +70,7 @@ class TitanicSource:
 
 
 def generate_answers():
-    titanic = TitanicSource("../../resources/week1/titanic.csv")
+    titanic = TitanicSource("../../../resources/week1/titanic.csv")
 
 
 generate_answers()
