@@ -1,8 +1,8 @@
-import sklearn.datasets as ds
-import sklearn.preprocessing as pp
-import sklearn.neighbors as nghb
-import sklearn.cross_validation as cv
 import numpy as np
+import sklearn.cross_validation as cv
+import sklearn.datasets as ds
+import sklearn.neighbors as nghb
+import sklearn.preprocessing as pp
 
 
 class BostonAnalyzer:
@@ -16,15 +16,15 @@ class BostonAnalyzer:
         steps = np.linspace(1, 10, 200)
 
         kfold = cv.KFold(len(data_frame.data), n_folds=5, random_state=42, shuffle=True)
-        scores = []
+        scores = {}
         for step in steps:
             nrgr = nghb.KNeighborsRegressor(n_neighbors=5, weights='distance', p=step)
             score = cv.cross_val_score(nrgr, scaled_features, data_frame.target, cv=kfold,
                                        scoring='mean_squared_error').max()
-            scores.append({step: score})
-        best_score = score[0]
-        for score in scores:
-            if score.value > best_score.value:
+            scores[step] = score
+        best_score = scores.values()[0]
+        for key in scores.keys():
+            if scores[key] > best_score:
                 best_score = score
 
         return best_score

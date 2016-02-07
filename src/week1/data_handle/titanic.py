@@ -1,7 +1,8 @@
 import math
-import pandas as pan
-import numpy as np
 from collections import Counter
+
+import numpy as np
+import pandas as pan
 from sklearn.tree import DecisionTreeClassifier
 
 
